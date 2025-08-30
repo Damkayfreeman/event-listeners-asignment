@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple form Validation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1da49350f2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="username">
+                <span class="input-group-text"><i style="color: red" class="fa-solid fa-xmark"></i></span>
+                <span class="input-group-text"><i style="color: green" class="fa-solid fa-check"></i></span>
+            </div>
+
+            <div id="usernameHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
+            <div id="passwordHelp" class="form-text"></div>
+
+        </div>
+        <button id="register" class="btn btn-primary">Submit</button>
+    </div>
+
+
+    <script>
+        let usernameHelp = document.getElementById("usernameHelp");
+        let passwordHelp = document.getElementById("passwordHelp");
+        let registerBtn = document.getElementById("register");
+        registerBtn.disabled = true;
+
+        document.getElementById("username").addEventListener("input", function (event) {
+            let username = event.target.value;
+            usernameHelp.textContent = "";
+
+            if (username.length <= 4 && username.length !== 0) {
+                usernameHelp.textContent = `Username ${username} is to short`;
+                usernameHelp.style.color = "red";
+                usernameHelp.style.fontStyle = "bold";
+
+            } else if (username.length > 4 && username.length !== 0) {
+                registerBtn.disabled = false;
+                usernameHelp.textContent = `Available`;
+                usernameHelp.style.color = "green";
+            }
+
+        })
+
+          document.getElementById("password").addEventListener("input", function (event) {
+            let password = event.target.value;
+            passwordHelp.textContent = "";
+
+            if (password.length <= 6 && password.length !== 0) {
+                passwordHelp.textContent = `password ${password} is to short`;
+                passwordHelp.style.color = "red";
+
+             } else if (password.length > 6 && password.length !== 0) {
+                registerBtn.disabled = false;
+                passwordHelp.textContent = `Good`;
+                passwordHelp.style.color = "green";
+            }
+
+          })
+
+        
+        registerBtn.addEventListener("click", function () { 
+            alert( "Welcome john! Your account has been created.");
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>

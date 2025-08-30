@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM and Events</title>
+    <style>
+        #select option[value="blue"] {
+            background-color: blue;
+            color: white;
+        }
+
+        #select option[value="red"] {
+            background-color: red;
+            color: white;
+        }
+
+        #select option[value="green"] {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="alertBtn"> Click Me</button> <br><br>
+    <button id="colorBtn"> submit</button>
+
+    <p id="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa repellendus maiores, quae rerum, soluta
+        unde sunt
+        necessitatibus aliquam a vitae, voluptatem veritatis temporibus totam dolore eligendi mollitia vero magnam
+        ullam?</p>
+
+    <select id="select">
+        <option value="">Select Color</option>
+        <option value="blue"> Blue</option>
+        <option value="red"> Red</option>
+        <option value="green"> Green</option>
+    </select>
+
+    <script>
+        let btn = document.getElementById("alertBtn");
+        btn.addEventListener("click", function () {
+            alert("Hello World!");
+        })
+
+        document.getElementById("colorBtn").addEventListener("click", function () {
+            this.style.backgroundColor = "yellow";
+        })
+
+        document.getElementById("para").addEventListener("mouseover", function () {
+            this.style.color = "purple";
+
+        })
+
+        document.getElementById("select").addEventListener("change", function () {
+            this.style.color = white;
+        })
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
