@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,49 +16,89 @@
             margin: 10px;
             padding: 10px;
         }
-
     </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1> Countdown Timer</h1>
-    <label>
-        Enter Seconds: 
-        <input type="number" id="seconds" min="1"/>
-    </label>
-    <br><br>
+    <div class="container">
+        <h1> Countdown Timer</h1>
+        <label>
+             Seconds:
+            <input type="number" id="seconds" min="1" />
+        </label>
+        <br><br>
 
-    <button id="start"> Start</button>
-    <button id="stop"> Stop</button>
-    <button id="reset"> Reset</button>
+        <button id="start"> Start</button>
+        <button id="stop"> Stop</button>
+        <button id="reset"> Reset</button>
 
-    <div id="timer"></div>
+        <div id="time"></div>
 
-  </div>
+    </div>
 
-  <script>
-    let inputSeconds = document.getElementById("seconds");
-    let startBtn = document.getElementById("start");
-    let stopBtn = document.getElementById("stop");
-    let resetBtn = document.getElementById("reset");
-    let timeDisplay = document.getElementById("timer");
+    <script>
+        let inputSeconds = document.getElementById("seconds");
+        let startBtn = document.getElementById("start");
+        let stopBtn = document.getElementById("stop");
+        let resetBtn = document.getElementById("reset");
+        let timeDisplay = document.getElementById("time");
+
+        let timer;
+        let remainingTime = 0;
 
 
-    function updateDisplay(time) {
-        if (time <= 0) {
-            timeDisplay.textContent = "Time's up!";
-        } else {
-            timeDisplay.textContent = (time + "seconds" + "remaining");
+        function updateDisplay() {
+            if (remainingTime > 0) {
+                timeDisplay.textContent = remainingTime;
+            } else {
+                timeDisplay.textContent = "Time's up!";
+            }
         }
-    }
 
-    
+        function startTimer() {
+                if (remainingTime === 0) {
+                    remainingTime = Number(inputSeconds.value);
+                }
+            if (remainingTime > 0) {
+                updateDisplay();
+                timer = setInterval(() => {
+                    remainingTime--;
+                    updateDisplay();
+
+                    if (remainingTime <= 0) {
+                        clearInterval(timer);
+                    }
+                }, 1000);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            clearInterval (timer);
+            remainingTime = Number(inputSeconds.value);
+            updateDisplay()
+
+        }
+
+        startBtn.addEventListener("click", startTimer);
+        stopBtn.addEventListener("click", stopTimer);
+        resetBtn.addEventListener("click", resetTimer);
+
+        updateDisplay()
 
 
 
 
-  </script>
-    
-    
+
+
+
+
+    </script>
+
+
 </body>
+
 </html>
