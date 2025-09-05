@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+    body {
+        padding: 40px;
+        text-align: center;
+    }
+
+    input {
+        padding: 8px;
+        margin: 5px;
+        font-size: 20px;
+        width: 100px;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 10px 10px;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #1401017e;
+
+    }
+</style>
+
+<body>
+    <h1> Simple Calculator</h1>
+
+    <input type="number" id="num1" placeholder="number">
+    <input type="number" id="num2" placeholder="number">
+
+    <div>
+        <button onclick="calculate('add')"> Add</button>
+        <button onclick="calculate('subtract')"> Subtract</button>
+        <button onclick="calculate('multiply')"> Multiply</button>
+        <button onclick="clearAll()"> Clear</button>
+    </div>
+
+    <p id="result"></p>
+
+    <script>
+        function calculate(operator) {
+            let num1 = Number(document.getElementById("num1").value);
+            let num2 = Number(document.getElementById("num2").value);
+            let resultDisplay = document.getElementById("result");
+
+            if (Number.isNaN(num1) || Number.isNaN(num2)) {
+                resultDisplay.textContent = "Input error: only numbers are allowed.";
+                return;
+            }
+
+            let result;
+
+            switch (operator) {
+                case "add":
+                    result = num1 + num2;
+                    break;
+                case "subtract":
+                    result = num1 - num2;
+                    break;
+                case "multiply":
+                    result = num1 * num2;
+                    break;
+                default:
+                    resultDisplay.textContent = "Invalid operator.";
+                    return;
+            }
+            resultDisplay.textContent = `Result: ${result}`;
+        }
+
+
+        function clearAll() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("result").textContent = "";
+        }
+    </script>
+
+</body>
+
+</html>
