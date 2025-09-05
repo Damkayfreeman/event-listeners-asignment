@@ -61,22 +61,27 @@
             }
 
             let result;
+            let operatorSymbol;
+            
 
             switch (operator) {
                 case "add":
                     result = num1 + num2;
+                    operatorSymbol = " + "
                     break;
                 case "subtract":
                     result = num1 - num2;
+                    operatorSymbol = " - "
                     break;
                 case "multiply":
                     result = num1 * num2;
+                    operatorSymbol = " * "
                     break;
                 default:
                     resultDisplay.textContent = "Invalid operator.";
                     return;
             }
-            resultDisplay.textContent = `Result: ${result}`;
+            resultDisplay.textContent = `${num1} ${operatorSymbol} ${num2} = ${result}`;
         }
 
 
